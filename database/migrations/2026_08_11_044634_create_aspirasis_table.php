@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('aspirasis', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['menunggu', 'proses', 'selesai'])->default('pending');
+            $table->enum('status', ['pending', 'proses', 'selesai'])->default('pending');
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->string('feedback')->nullable();
             $table->timestamps();
