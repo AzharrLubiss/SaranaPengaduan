@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nisn')->unique();
             $table->string('nama');
+            $table->string('password');
             $table->string('kelas');
             $table->timestamps();
         });

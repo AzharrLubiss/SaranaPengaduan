@@ -13,12 +13,28 @@
         <div class="card shadow rounded-4 p-4" style="width: 460px;">
 
             <h3 class="mb-4 text-center h2">NGADU!</h3>
-            <form action="">
+            <form action="{{ route('login.submit') }}" method="post">
                 @csrf
                 <span>NISN</span>
-                <input type="text" class="form-control mb-4" placeholder="7342" name="nisn" required>
+                <input type="text" class="form-control mb-3" placeholder="7342" name="nisn" required>
                 <span>Password</span>
-                <input type="password" class="form-control mb-4" name="password" required>
+                <input type="password" class="form-control mb-4" name="password" placeholder="******" required>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-primary" type="submit">
+                        Login
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        Reset
+                    </button>
+                </div>
+
+                @session('error')
+                    <div class="alert alert danger my-3 text-center">
+                        {{ session('error') }}
+                    </div>
+                @endsession
+                
             </form>
 
         </div>

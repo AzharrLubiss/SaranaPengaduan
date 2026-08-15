@@ -10,7 +10,7 @@
     <!-- bikin navbar sih -->
     
     @yield('content')
-
+    
     @yield('scripts')
 
     <!-- sama footer juga -->
