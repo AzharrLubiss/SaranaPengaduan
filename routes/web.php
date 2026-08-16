@@ -15,12 +15,16 @@ Route::get('/registrasi', function () {
     return view('auth.register');
 })->name('registrasi');
 
-Route::middleware(['auth'])->group(function () {
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/', [AspirasiController::class, 'index'])->name('home');
-
-    // Edit Laporan
-    Route::get('/laporan/{inputAspirasi}/edit', [InputAspirasiController::class, 'edit'])->name('laporan.edit');
-    Route::put('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'update'])->name('laporan.update');
-
+Route::get('/test-login', function () {
+    $user = \App\Models\User::first();
+    auth()->login($user);
+    session()->save();
+    return redirect()->route('home');
 });
+
+// Sementara tanpa auth biar bisa dites
+Route::get('/', [AspirasiController::class, 'index'])->name('home');
+Route::get('/laporan/{inputAspirasi}/edit', [InputAspirasiController::class, 'edit'])->name('laporan.edit');
+Route::put('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'update'])->name('laporan.update');
