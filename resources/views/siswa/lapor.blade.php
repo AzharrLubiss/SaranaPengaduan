@@ -1,7 +1,12 @@
-@section('title','Lapor')
+@extends('layouts.app')
+
+@section('title', 'Lapor')
 
 @section('content')
-
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum similique odit consectetur, quisquam quis sint, tenetur ducimus ipsam perspiciatis ratione explicabo doloribus dolorum inventore fugiat. Laborum sit deleniti magnam commodi.</p>
-
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="mb-3">Halaman Lapor</h4>
+            <p class="text-muted">Ini halaman lapor sementara.</p>
+        </div>
+    </div>
 @endsection
