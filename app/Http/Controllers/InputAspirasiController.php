@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InputAspirasi;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InputAspirasiController extends Controller
 {
@@ -13,7 +14,7 @@ class InputAspirasiController extends Controller
      */
     public function index()
     {
-        //
+        return view('siswa.lapor');
     }
 
     /**
@@ -37,7 +38,14 @@ class InputAspirasiController extends Controller
      */
     public function show(InputAspirasi $inputAspirasi)
     {
-        //
+        // Siswa hanya boleh melihat laporan miliknya sendiri.
+        if (Auth::check() && $inputAspirasi->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $inputAspirasi->load(['kategori', 'user']);
+
+        return view('siswa.show', compact('inputAspirasi'));
     }
 
     /**
@@ -82,6 +90,7 @@ class InputAspirasiController extends Controller
      */
     public function destroy(InputAspirasi $inputAspirasi)
     {
-        //
+        $inputAspirasi->delete();
+        return redirect()->route('home')->with('success', 'Laporan berhasil dihapus');
     }
 }

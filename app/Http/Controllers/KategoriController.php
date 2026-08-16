@@ -20,7 +20,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
