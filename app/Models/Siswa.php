@@ -9,6 +9,8 @@ class Siswa extends Authenticateable
 {
     protected $fillable = [
         'nisn',
+        'nama',
         'password',
+        'kelas'
     ];
 }
