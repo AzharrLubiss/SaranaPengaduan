@@ -27,6 +27,7 @@
 
                 <ul class="navbar-nav">
                     @auth
+                    <div class="d-flex align-items-center">
                         <li class="nav-item">
                             <span class="nav-link text-white">
                                 Halo, {{ Auth::user()->name ?? 'User' }}
@@ -40,13 +41,17 @@
                                 </button>
                             </form>
                         </li>
+                    </div>
                     @else
+                    <div class="d-flex align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('registrasi') }}">Daftar</a>
                         </li>
+                    </div>
+                        
                     @endauth
                 </ul>
             </div>
@@ -58,10 +63,11 @@
             @yield('content')
         </div>
     </main>
+
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <div class="container">
             <small>
-                &copy; {{ date('Y') }} Sarana Pengaduan Siswa — Kelompok 6 RPL AH
+                &copy; {{ date('Y') }} Sarana Pengaduan Siswa — Kelompok 6 XII RPL A
             </small>
         </div>
     </footer>

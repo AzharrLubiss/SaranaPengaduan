@@ -24,6 +24,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function(){
 
     Route::get('/', [InputAspirasiController::class, 'index'])->name('home');
+
+    //bikin laporan
+    Route::post('/buat-laporan',[InputAspirasiController::class,'create'])->name('buat-laporan');
+
+
+
+    //detil
     Route::get('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'show'])->name('laporan.show');
     Route::get('/laporan/{inputAspirasi}/edit', [InputAspirasiController::class, 'edit'])->name('laporan.edit');
     Route::put('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'update'])->name('laporan.update');
