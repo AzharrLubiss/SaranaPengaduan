@@ -61,30 +61,29 @@ class InputAspirasiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, InputAspirasi $inputAspirasi)
-    {
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'isi_laporan' => 'required|string',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+{
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'isi_laporan' => 'required|string',
+        'lokasi' => 'nullable|string|max:255',
+        'kategori_id' => 'required|exists:kategoris,id',
+        'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        $data = $request->only(['judul', 'isi_laporan', 'kategori_id']);
+    $data = $request->only(['judul', 'isi_laporan', 'lokasi', 'kategori_id']);
 
-        if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($inputAspirasi->foto && file_exists(storage_path('app/public/' . $inputAspirasi->foto))) {
-                unlink(storage_path('app/public/' . $inputAspirasi->foto));
-            }
-
-            $data['foto'] = $request->file('foto')->store('laporan', 'public');
+    if ($request->hasFile('foto')) {
+        if ($inputAspirasi->foto && file_exists(storage_path('app/public/' . $inputAspirasi->foto))) {
+            unlink(storage_path('app/public/' . $inputAspirasi->foto));
         }
 
-        $inputAspirasi->update($data);
-
-        return redirect()->route('home')->with('success', 'Laporan berhasil diupdate');
+        $data['foto'] = $request->file('foto')->store('laporan', 'public');
     }
 
+    $inputAspirasi->update($data);
+
+    return redirect()->route('home')->with('success', 'Laporan berhasil diupdate');
+}
     /**
      * Remove the specified resource from storage.
      */

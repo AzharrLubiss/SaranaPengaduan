@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Halaman login admin.
-     */
     public function loginForm()
     {
         return view('admin.login');
@@ -51,10 +48,6 @@ class AdminController extends Controller
         return redirect()->route('admin.login');
     }
 
-    /**
-     * Dashboard admin: list seluruh aspirasi dengan filter
-     * per tanggal, per bulan, per siswa, per kategori.
-     */
     public function dashboard(Request $request)
     {
         $query = InputAspirasi::with(['kategori', 'user']);
@@ -64,7 +57,6 @@ class AdminController extends Controller
         }
 
         if ($request->filled('bulan')) {
-            // format input bulan: YYYY-MM
             $query->whereYear('created_at', substr($request->bulan, 0, 4))
                   ->whereMonth('created_at', substr($request->bulan, 5, 2));
         }
@@ -84,10 +76,8 @@ class AdminController extends Controller
         }
 
         $aspirasis = $query->latest()->paginate(10)->withQueryString();
-
         $kategoris = Kategori::all();
 
-        // Ringkasan jumlah per status untuk kartu statistik di dashboard
         $summary = [
             'total' => InputAspirasi::count(),
             'pending' => InputAspirasi::where('status', 'pending')->count(),
@@ -98,32 +88,49 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('aspirasis', 'kategoris', 'summary'));
     }
 
-    /**
-     * Detail satu aspirasi untuk admin, sekaligus histori/riwayat status.
-     */
     public function show(InputAspirasi $inputAspirasi)
     {
         $inputAspirasi->load(['kategori', 'user']);
-        return view('admin.show', compact('inputAspirasi'));
+        $kategoris = Kategori::all();
+        return view('admin.show', compact('inputAspirasi', 'kategoris'));
     }
 
-    /**
-     * Admin memberi umpan balik dan mengubah status penyelesaian.
-     */
     public function updateFeedback(Request $request, InputAspirasi $inputAspirasi)
     {
         $request->validate([
             'status' => 'required|in:pending,proses,selesai',
             'tanggapan' => 'nullable|string|max:1000',
+            'kategori_id' => 'required|exists:kategoris,id',
         ]);
 
         $inputAspirasi->update([
             'status' => $request->status,
             'tanggapan' => $request->tanggapan,
+            'feedback' => $request->feedback,
+            'kategori_id' => $request->kategori_id,
         ]);
 
         return redirect()
             ->route('admin.laporan.show', $inputAspirasi)
             ->with('success', 'Status dan tanggapan berhasil diperbarui.');
     }
+    public function createKategori()
+{
+    return view('admin.kategori.create');
+}
+
+public function storeKategori(Request $request)
+{
+    $request->validate([
+        'nama_kategori' => 'required|string|max:100',
+        'ket_kategori' => 'required|string|max:255',
+    ]);
+
+    Kategori::create([
+        'nama_kategori' => $request->nama_kategori,
+        'ket_kategori' => $request->ket_kategori,
+    ]);
+
+    return redirect()->route('admin.dashboard')->with('success', 'Kategori berhasil ditambahkan.');
+}
 }

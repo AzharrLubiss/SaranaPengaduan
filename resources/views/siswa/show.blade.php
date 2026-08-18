@@ -274,3 +274,51 @@
     </div>
 </div>
 @endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection

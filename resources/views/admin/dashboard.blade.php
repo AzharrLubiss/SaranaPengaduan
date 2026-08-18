@@ -4,7 +4,12 @@
 
 @section('content')
 
-    <h3 class="fw-bold mb-4">Dashboard Aspirasi</h3>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">Dashboard Aspirasi</h3>
+        <a href="{{ route('admin.kategori.create') }}" class="btn btn-success">
+            + Tambah Kategori
+        </a>
+    </div>
 
     {{-- kartu ringkasan --}}
     <div class="row g-3 mb-4">
