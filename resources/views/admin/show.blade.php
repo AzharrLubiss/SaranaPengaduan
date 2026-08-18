@@ -100,6 +100,17 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Kategori</label>
+                            <select name="kategori_id" class="form-select" required>
+                                @foreach($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}" {{ $inputAspirasi->kategori_id == $kategori->id ? 'selected' : '' }}>
+                                        {{ $kategori->nama_kategori }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Umpan Balik untuk Siswa</label>
                             <textarea name="feedback" class="form-control" rows="6" placeholder="Tulis tanggapan atau progres perbaikan di sini...">{{ old('feedback', $inputAspirasi->feedback) }}</textarea>
                         </div>
