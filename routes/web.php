@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/', [InputAspirasiController::class, 'index'])->name('home');
 
     //bikin laporan
-    Route::post('/buat-laporan',[InputAspirasiController::class,'create'])->name('buat-laporan');
+    Route::post('/buat-laporan',[InputAspirasiController::class,'store'])->name('buat-laporan');
 
 
 

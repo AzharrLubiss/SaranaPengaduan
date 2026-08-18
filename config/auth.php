@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'siswas',
         ],
     ],
 
@@ -60,7 +60,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'siswas' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Siswa::class),
         ],

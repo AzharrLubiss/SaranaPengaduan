@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('input_aspirasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('siswas')->onDelete('cascade');
             $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
             $table->string('judul');
             $table->text('isi_laporan');

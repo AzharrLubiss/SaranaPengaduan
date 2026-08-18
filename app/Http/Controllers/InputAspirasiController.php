@@ -14,7 +14,10 @@ class InputAspirasiController extends Controller
      */
     public function index()
     {
-        return view('siswa.lapor');
+        $data_kategori = Kategori::all();
+        $data_laporan = InputAspirasi::where('user_id', Auth::id())->latest()->get();
+
+        return view('siswa.lapor',compact('data_kategori','data_laporan'));
     }
 
     /**
@@ -30,7 +33,29 @@ class InputAspirasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tervalidasi = $request->validate([
+            'kategori_id' => 'required|string|max:255',
+            'judul' => 'required|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+            'isi_laporan' => 'required|string',
+        ]);
+
+        if($request->hasFile('foto')){
+            $tervalidasi['foto'] = $request->file('foto')->store('laporan', 'public');
+        }
+
+        InputAspirasi::create([
+            'user_id' => Auth::id(),
+            'kategori_id' => $tervalidasi['kategori_id'],
+            'judul' => $tervalidasi['judul'],
+            'lokasi' => $tervalidasi['lokasi'],
+            'foto' => $tervalidasi['foto'] ?? null,
+            'isi_laporan' => $tervalidasi['isi_laporan'],
+        ]);
+
+        return back()->with('success', 'Laporan berhasil dikirim');
+
     }
 
     /**
