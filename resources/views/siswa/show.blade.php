@@ -230,16 +230,22 @@
                 <div class="col-12">
                     <div class="report-label mb-2">Tanggapan Admin</div>
 
-                    <div class="response-box">
-                        <div>
-                            <div class="response-icon">💬</div>
-                            <h5 class="fw-bold mb-2">Belum Ditanggapi</h5>
-                            <p class="text-muted mb-0">
-                                Laporan kamu sudah tercatat. Tanggapan admin akan
-                                ditampilkan di bagian ini setelah laporan diproses.
-                            </p>
+                    @if($inputAspirasi->feedback)
+                        <div class="p-4 border rounded-4 bg-light-subtle" style="white-space: pre-line;">
+                            {{ $inputAspirasi->feedback }}
                         </div>
-                    </div>
+                    @else
+                        <div class="response-box">
+                            <div>
+                                <div class="response-icon">💬</div>
+                                <h5 class="fw-bold mb-2">Belum Ditanggapi</h5>
+                                <p class="text-muted mb-0">
+                                    Laporan kamu sudah tercatat. Tanggapan admin akan
+                                    ditampilkan di bagian ini setelah laporan diproses.
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

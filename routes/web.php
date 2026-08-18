@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InputAspirasiController;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,21 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/laporan/{inputAspirasi}/edit', [InputAspirasiController::class, 'edit'])->name('laporan.edit');
     Route::put('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'update'])->name('laporan.update');
     Route::delete('/laporan/{inputAspirasi}', [InputAspirasiController::class, 'destroy'])->name('laporan.destroy');
+
+});
+
+// ================== ADMIN ==================
+
+Route::get('/admin/login', [AdminController::class, 'loginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/laporan/{inputAspirasi}', [AdminController::class, 'show'])->name('laporan.show');
+    Route::put('/laporan/{inputAspirasi}', [AdminController::class, 'updateFeedback'])->name('laporan.update-feedback');
 
 });
 
