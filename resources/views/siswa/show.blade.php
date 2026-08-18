@@ -28,7 +28,8 @@
         color: #6c757d;
         text-transform: uppercase;
         letter-spacing: .06em;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
+        display: block;
     }
 
     .report-title {
@@ -134,7 +135,7 @@
 </style>
 
 <div class="show-page">
-    {{-- kepalanyo --}}
+    {{-- Bagian Header (Judul Halaman) --}}
     <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
         <div>
             <div class="text-muted small mb-1">Laporan Siswa</div>
@@ -142,13 +143,13 @@
             <p class="text-muted mb-0">Lihat informasi laporan dan tanggapan dari admin.</p>
         </div>
 
-        <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+        <a href="{{ route('home') }}" class="btn btn-outline-secondary rounded-pill px-4">
             Kembali
         </a>
     </div>
 
     <div class="report-card shadow-sm">
-        {{-- judul + statusnyoo --}}
+        {{-- Judul + Status Laporan --}}
         <div class="report-header d-flex flex-wrap align-items-center justify-content-between gap-3">
             <div>
                 <div class="report-label">Judul Laporan</div>
@@ -160,8 +161,8 @@
 
                 $statusClass = match ($status) {
                     'selesai' => 'bg-success-subtle text-success',
-                    'proses' => 'bg-warning-subtle text-warning-emphasis',
-                    default => 'bg-secondary-subtle text-secondary',
+                    'proses' => 'bg-info-subtle text-info-emphasis',
+                    default => 'bg-warning-subtle text-warning-emphasis',
                 };
             @endphp
 
@@ -172,16 +173,13 @@
 
         <div class="p-4">
             <div class="row g-4">
-                {{-- bagian foto nya--}}
+                {{-- Bagian Foto --}}
                 <div class="col-lg-5">
-                    <div class="report-label mb-2">Bukti Laporan</div>
+                    <div class="report-label">Bukti Laporan</div>
 
                     <div class="photo-box">
                         @if($inputAspirasi->foto)
-                            <img
-                                src="{{ asset('storage/' . $inputAspirasi->foto) }}"
-                                alt="Bukti laporan {{ $inputAspirasi->judul }}"
-                            >
+                            <img src="{{ asset('storage/' . $inputAspirasi->foto) }}" alt="Bukti laporan {{ $inputAspirasi->judul }}">
                         @else
                             <div class="text-center text-muted">
                                 <div class="fs-1 mb-2">🖼️</div>
@@ -191,9 +189,9 @@
                     </div>
                 </div>
 
-                {{-- bagian informasi laporannya --}}
+                {{-- Bagian Informasi Laporan --}}
                 <div class="col-lg-7">
-                    <div class="report-label mb-2">Informasi Laporan</div>
+                    <div class="report-label">Informasi Laporan</div>
 
                     <div class="info-row">
                         <div class="info-label">Kategori</div>
@@ -225,10 +223,10 @@
                 </div>
             </div>
 
-            {{-- tanggapan admin --}}
+            {{-- Tanggapan Admin --}}
             <div class="row g-4 mt-1">
                 <div class="col-12">
-                    <div class="report-label mb-2">Tanggapan Admin</div>
+                    <div class="report-label">Tanggapan Admin</div>
 
                     @if($inputAspirasi->tanggapan)
                         <div class="p-4 border rounded-4 bg-light-subtle" style="white-space: pre-line;">
@@ -250,10 +248,10 @@
             </div>
         </div>
 
-        {{-- tombol --}}
+        {{-- Tombol Aksi --}}
         <div class="action-bar d-flex flex-wrap justify-content-end gap-2">
             @if($status === 'pending')
-                <a href="{{ route('laporan.edit', $inputAspirasi) }}" class="btn btn-primary">
+                <a href="{{ route('laporan.edit', $inputAspirasi) }}" class="btn btn-primary rounded-pill px-4">
                     Edit
                 </a>
 
@@ -261,13 +259,13 @@
                       onsubmit="return confirm('Yakin ingin menghapus laporan ini? Data yang sudah dihapus tidak dapat dikembalikan.');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-danger rounded-pill px-4">
                         Hapus
                     </button>
                 </form>
             @endif
 
-            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary rounded-pill px-4">
                 Kembali
             </a>
         </div>

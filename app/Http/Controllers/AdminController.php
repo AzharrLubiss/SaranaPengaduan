@@ -62,8 +62,8 @@ class AdminController extends Controller
         }
 
         if ($request->filled('siswa')) {
-            $query->whereHas('user', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->siswa . '%');
+            $query->whereHas('siswa', function ($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->siswa . '%');
             });
         }
 
