@@ -12,7 +12,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.kategori.index', [
+            'kategori' => Kategori::all(),
+        ]);
     }
 
     /**
@@ -20,7 +22,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.kategori.create');
     }
 
     /**
@@ -28,7 +30,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

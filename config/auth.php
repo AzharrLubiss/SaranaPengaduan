@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'siswas',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'siswas' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Siswa::class),
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

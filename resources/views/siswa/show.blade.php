@@ -230,9 +230,9 @@
                 <div class="col-12">
                     <div class="report-label mb-2">Tanggapan Admin</div>
 
-                    @if($inputAspirasi->feedback)
+                    @if($inputAspirasi->tanggapan)
                         <div class="p-4 border rounded-4 bg-light-subtle" style="white-space: pre-line;">
-                            {{ $inputAspirasi->feedback }}
+                            {{ $inputAspirasi->tanggapan }}
                         </div>
                     @else
                         <div class="response-box">
@@ -263,6 +263,54 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">
                         Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
+                    </button>
+                </form>
+            @endif
+
+            <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                Kembali
+            </a>
+        </div>
+    </div>
+</div>
+@endsection
+                     Hapus
                     </button>
                 </form>
             @endif

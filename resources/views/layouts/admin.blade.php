@@ -17,7 +17,7 @@
 
             <div class="d-flex align-items-center ms-auto">
                 <span class="text-white-50 me-3 small">
-                    Halo, {{ Auth::user()->name ?? 'Admin' }}
+                    Halo, {{ Auth::guard('admin')->user()->name ?? 'Admin' }}
                 </span>
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf

@@ -44,6 +44,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Lokasi</label>
+                        <input type="text" name="lokasi" class="form-control" value="{{ old('lokasi', $inputAspirasi->lokasi) }}" placeholder="Contoh: Lantai 2 / Kelas 12 RPL">
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">Kategori</label>
                         <select name="kategori_id" class="form-select" required>
                             @foreach($kategoris as $kategori)
@@ -60,7 +65,7 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Update Laporan</button>
+                        <button type="submit" class="btn btn-success">Update Laporan</button>
                         <a href="{{ route('home') }}" class="btn btn-secondary">Batal</a>
                     </div>
                 </form>

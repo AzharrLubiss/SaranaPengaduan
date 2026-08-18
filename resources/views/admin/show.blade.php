@@ -100,8 +100,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Umpan Balik untuk Siswa</label>
-                            <textarea name="feedback" class="form-control" rows="6" placeholder="Tulis tanggapan atau progres perbaikan di sini...">{{ old('feedback', $inputAspirasi->feedback) }}</textarea>
+                            <label class="form-label">Tanggapan untuk Siswa</label>
+                            <textarea name="tanggapan" class="form-control" rows="6" placeholder="Tulis tanggapan atau progres perbaikan di sini...">{{ old('tanggapan', $inputAspirasi->tanggapan) }}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Simpan Tanggapan</button>
