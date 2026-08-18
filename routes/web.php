@@ -39,8 +39,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/admin/login', [AdminController::class, 'loginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-Route::get('/kategori/create', [AdminController::class, 'createKategori'])->name('admin.kategori.create');
-Route::post('/kategori', [AdminController::class, 'storeKategori'])->name('kategori.store');
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
 

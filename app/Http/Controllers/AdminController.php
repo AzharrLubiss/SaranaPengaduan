@@ -115,22 +115,22 @@ class AdminController extends Controller
             ->with('success', 'Status dan tanggapan berhasil diperbarui.');
     }
     public function createKategori()
-{
-    return view('admin.kategori.create');
-}
+    {
+        return view('admin.create');
+    }
 
-public function storeKategori(Request $request)
-{
-    $request->validate([
-        'nama_kategori' => 'required|string|max:100',
-        'ket_kategori' => 'required|string|max:255',
-    ]);
+    public function storeKategori(Request $request)
+    {
+        $request->validate([
+            'nama_kategori' => 'required|string|max:100',
+            'ket_kategori' => 'required|string|max:255',
+        ]);
 
-    Kategori::create([
-        'nama_kategori' => $request->nama_kategori,
-        'ket_kategori' => $request->ket_kategori,
-    ]);
+        Kategori::create([
+            'nama_kategori' => $request->nama_kategori,
+            'ket_kategori' => $request->ket_kategori,
+        ]);
 
-    return redirect()->route('admin.dashboard')->with('success', 'Kategori berhasil ditambahkan.');
-}
+        return redirect()->route('admin.dashboard')->with('success', 'Kategori berhasil ditambahkan.');
+    }
 }
