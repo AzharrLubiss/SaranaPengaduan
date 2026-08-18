@@ -20,7 +20,8 @@ class AdminController extends Controller
     }
 
     /**
-     * Proses login admin (memakai tabel users, role = admin).
+     * Proses login admin — pakai guard 'admin' terpisah dari siswa,
+     * supaya tidak bentrok dengan guard default yang dipakai siswa (tabel siswas).
      */
     public function login(Request $request)
     {
@@ -29,9 +30,9 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            if (Auth::user()->role !== 'admin') {
-                Auth::logout();
+        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+            if (Auth::guard('admin')->user()->role !== 'admin') {
+                Auth::guard('admin')->logout();
                 return redirect()->route('admin.login')->with('error', 'Akun ini bukan akun admin.');
             }
 
@@ -44,7 +45,7 @@ class AdminController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('admin.login');
@@ -113,16 +114,16 @@ class AdminController extends Controller
     {
         $request->validate([
             'status' => 'required|in:pending,proses,selesai',
-            'feedback' => 'nullable|string|max:1000',
+            'tanggapan' => 'nullable|string|max:1000',
         ]);
 
         $inputAspirasi->update([
             'status' => $request->status,
-            'feedback' => $request->feedback,
+            'tanggapan' => $request->tanggapan,
         ]);
 
         return redirect()
             ->route('admin.laporan.show', $inputAspirasi)
-            ->with('success', 'Status dan umpan balik berhasil diperbarui.');
+            ->with('success', 'Status dan tanggapan berhasil diperbarui.');
     }
 }

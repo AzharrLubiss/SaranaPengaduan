@@ -10,13 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 class EnsureUserIsAdmin
 {
     /**
-     * Pastikan user yang login adalah admin.
-     * Jika bukan admin, tolak akses (403) atau lempar ke halaman login admin.
+     * Pastikan yang login lewat guard 'admin' dan memang punya role admin.
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::check() || Auth::user()->role !== 'admin') {
-            Auth::logout();
+        if (! Auth::guard('admin')->check() || Auth::guard('admin')->user()->role !== 'admin') {
+            Auth::guard('admin')->logout();
             return redirect()->route('admin.login')->with('error', 'Anda tidak memiliki akses admin.');
         }
 

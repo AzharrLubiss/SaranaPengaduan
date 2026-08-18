@@ -10,7 +10,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-2" href="{{ url('/') }}">
+            <a class="navbar-brand fs-3 fw-bold" href="{{ url('/') }}">
                 NGADU!
             </a>
 
