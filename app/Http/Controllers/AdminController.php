@@ -100,14 +100,11 @@ class AdminController extends Controller
         $request->validate([
             'status' => 'required|in:pending,proses,selesai',
             'tanggapan' => 'nullable|string|max:1000',
-            'kategori_id' => 'required|exists:kategoris,id',
         ]);
 
         $inputAspirasi->update([
             'status' => $request->status,
             'tanggapan' => $request->tanggapan,
-            'feedback' => $request->feedback,
-            'kategori_id' => $request->kategori_id,
         ]);
 
         return redirect()

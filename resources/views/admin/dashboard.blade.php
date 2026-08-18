@@ -115,7 +115,7 @@
                         @endphp
                         <tr>
                             <td class="small">{{ $item->created_at->format('d M Y') }}</td>
-                            <td>{{ $item->user->name ?? '-' }}</td>
+                            <td>{{ $item->siswa->nama ?? '-' }}</td>
                             <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
                             <td>{{ $item->judul }}</td>
                             <td>

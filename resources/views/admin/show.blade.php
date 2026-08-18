@@ -30,7 +30,7 @@
                         <div class="col-6">
                             <div class="p-2 bg-light rounded border-start border-3 border-primary">
                                 <small class="text-muted d-block">Pelapor</small>
-                                <span class="fw-semibold text-dark">{{ $inputAspirasi->user->name ?? '-' }}</span>
+                                <span class="fw-semibold text-dark">{{ $inputAspirasi->siswa->nama ?? '-' }}</span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -107,7 +107,15 @@
                     <h6 class="mb-0 fw-bold text-dark">Umpan Balik &amp; Status</h6>
                 </div>
                 <div class="card-body p-4 d-flex flex-column">
-
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     <form action="{{ route('admin.laporan.update-feedback', $inputAspirasi) }}" method="POST" class="d-flex flex-column h-100 justify-content-between">
                         @csrf
                         @method('PUT')
@@ -116,7 +124,7 @@
                             <div class="mb-3">
                                 <label class="form-label fw-semibold text-dark">Status Penyelesaian</label>
                                 <select name="status" class="form-select" required>
-                                    <option value="pending" {{ $inputAspirasi->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
+                                    <option value="pending" {{ $inputAspirasi->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                     <option value="proses" {{ $inputAspirasi->status == 'proses' ? 'selected' : '' }}>Diproses</option>
                                     <option value="selesai" {{ $inputAspirasi->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                 </select>

@@ -41,10 +41,12 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
-
+    
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
+    
     Route::get('/laporan/{inputAspirasi}', [AdminController::class, 'show'])->name('laporan.show');
     Route::put('/laporan/{inputAspirasi}', [AdminController::class, 'updateFeedback'])->name('laporan.update-feedback');
-
+    Route::get('/kategori/create', [AdminController::class, 'createKategori'])->name('kategori.create');
+    Route::post('/kategori', [AdminController::class, 'storeKategori'])->name('kategori.store');
+    
 });

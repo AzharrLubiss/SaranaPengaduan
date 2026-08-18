@@ -22,6 +22,11 @@ class InputAspirasi extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'user_id');
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
