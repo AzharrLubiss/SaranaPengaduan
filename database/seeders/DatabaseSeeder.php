@@ -19,5 +19,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Akun admin default untuk login ke /admin/login
+        User::factory()->create([
+            'name' => 'Admin Sekolah',
+            'email' => 'admin@sekolah.sch.id',
+            'role' => 'admin',
+        ]);
     }
 }

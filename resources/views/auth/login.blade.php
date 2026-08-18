@@ -28,6 +28,7 @@
                             Reset
                         </button>
                         <a href="{{ route('registrasi') }}" class="text-center" style="text-decoration: none;">belum punya akun?</a>
+                        <a href="{{ route('admin.login') }}" class="text-center small text-muted" style="text-decoration: none;">login sebagai admin</a>
                     </div>
 
                     @session('error')

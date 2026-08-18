@@ -14,6 +14,7 @@ class InputAspirasi extends Model
         'lokasi',
         'foto',
         'status',
+        'feedback',
     ];
 
     public function user()
