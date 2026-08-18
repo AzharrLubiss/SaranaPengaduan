@@ -11,6 +11,7 @@ class InputAspirasi extends Model
         'kategori_id',
         'judul',
         'isi_laporan',
+        'lokasi',
         'foto',
         'status',
     ];

@@ -10,8 +10,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-                Sarana Pengaduan
+            <a class="navbar-brand fs-2 fw-bold" href="{{ url('/') }}">
+                NGADU!
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -67,7 +67,7 @@
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <div class="container">
             <small>
-                &copy; {{ date('Y') }} Sarana Pengaduan Siswa — Kelompok 6 XII RPL A
+                &copy; {{ date('Y') }} NGADU RPLA
             </small>
         </div>
     </footer>
