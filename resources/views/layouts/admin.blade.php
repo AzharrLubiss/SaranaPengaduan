@@ -18,6 +18,11 @@
                 <span class="text-white-50 me-3 small">
                     Halo, {{ Auth::guard('admin')->user()->name ?? 'Admin' }}
                 </span>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.kategori.create') }}">Kategori</a>
+                    </li>
+                </ul>
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
