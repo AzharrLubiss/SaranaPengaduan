@@ -10,8 +10,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-                Sarana Pengaduan
+            <a class="navbar-brand fw-bold fs-2" href="{{ url('/') }}">
+                NGADU!
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
