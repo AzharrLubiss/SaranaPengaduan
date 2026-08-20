@@ -1,52 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login-Ngadu</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Registrasi Akun - NGADU!</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+
+        /* Card Auth Modern (Radius 18px) */
+        .auth-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            width: 100%;
+            max-width: 480px;
+            padding: 2.5rem 2rem;
+        }
+
+        /* Brand Logo Badge */
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: #ffffff;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+        }
+
+        /* Label Form */
+        .report-label {
+            font-size: .75rem;
+            font-weight: 700;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* Input Group & Custom Input (Radius 10px) */
+        .custom-input {
+            border-radius: 0 10px 10px 0 !important;
+            padding: 10px 14px;
+            border: 1px solid #ced4da;
+            font-size: 0.875rem;
+            background-color: #fff;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .input-group-text {
+            border-radius: 10px 0 0 10px !important;
+            background-color: #f8fafc;
+            border: 1px solid #ced4da;
+            color: #6c757d;
+        }
+
+        .custom-input:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+            outline: none;
+        }
+
+        .custom-btn {
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 10px 16px;
+        }
+
+        .link-login {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .link-login:hover {
+            color: #0a58ca;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    
-    <div class="container d-flex justify-content-center align-items-center vh-100">
 
-        <div class="card shadow bg-white rounded-4 p-4" style="width: 460px;">
-
-            <h3 class="mb-4 text-center h2 fw-bold">NGADU!</h3>
-            <form action="{{ route('registrasi.submit') }}" method="post">
-                @csrf
-
-                <span>NISN</span>
-                <input type="text" class="form-control mb-1" placeholder="7342" name="nisn" maxlength="4" required>
-                <span>Nama</span>
-                <input type="text" class="form-control mb-1" name="nama" required>
-                <span>Kelas</span>
-                <input type="text" class="form-control mb-1" placeholder="XII RPL A" name="kelas" required>
-                <span>Password</span>
-                <input type="password" class="form-control mb-4" name="password" placeholder="******" required>
-
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="submit">
-                        Confirm
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                        Reset
-                    </button>
-                </div>
-
-                @session('error')
-                    <div class="alert alert danger my-3 text-center">
-                        {{ session('error') }}
-                    </div>
-                @endsession
-                
-            </form>
-
+    <div class="auth-card">
+        {{-- Header / Brand --}}
+        <div class="text-center mb-4">
+            <div class="brand-icon">
+                <i class="bi bi-person-plus-fill"></i>
+            </div>
+            <h3 class="fw-bold mb-1 text-dark">Buat Akun Siswa</h3>
+            <p class="text-muted small mb-0">Lengkapi data diri Anda untuk mendaftar di NGADU!</p>
         </div>
 
+        {{-- Alert Notifikasi Error --}}
+        @session('error')
+            <div class="alert alert-danger border-0 text-center small fw-semibold mb-4" style="border-radius: 10px; background-color: #f8d7da; color: #842029;">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ session('error') }}
+            </div>
+        @endsession
+
+        {{-- Form Registrasi --}}
+        <form action="{{ route('registrasi.submit') }}" method="POST">
+            @csrf
+
+            {{-- NISN --}}
+            <div class="mb-3">
+                <label class="report-label">NISN</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-card-heading"></i></span>
+                    <input type="text" class="form-control custom-input" placeholder="Contoh: 7342" name="nisn" value="{{ old('nisn') }}" required autofocus>
+                </div>
+            </div>
+
+            {{-- Nama Lengkap --}}
+            <div class="mb-3">
+                <label class="report-label">Nama Lengkap</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control custom-input" placeholder="Masukkan nama lengkap" name="nama" value="{{ old('nama') }}" required>
+                </div>
+            </div>
+
+            {{-- Kelas --}}
+            <div class="mb-3">
+                <label class="report-label">Kelas</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-mortarboard"></i></span>
+                    <input type="text" class="form-control custom-input" placeholder="Contoh: XII RPL A" name="kelas" value="{{ old('kelas') }}" required>
+                </div>
+            </div>
+
+            {{-- Password --}}
+            <div class="mb-4">
+                <label class="report-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control custom-input" name="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            {{-- Tombol Aksi --}}
+            <div class="d-grid gap-2 mb-4">
+                <button class="btn btn-primary custom-btn shadow-sm" type="submit">
+                    Daftar Sekarang
+                </button>
+            </div>
+
+            {{-- Link ke Login --}}
+            <div class="text-center small text-muted">
+                Sudah punya akun? 
+                <a href="{{ route('login') }}" class="link-login">Masuk di sini</a>
+            </div>
+        </form>
+
+        
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
